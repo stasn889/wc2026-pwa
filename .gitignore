@@ -2,3 +2,4 @@ files/
 wc2026-pwa-v4.zip
 tools/
 docs/
+.claude/settings.local.json
