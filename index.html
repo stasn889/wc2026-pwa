@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0d1117">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <title>פנטזי מונדיאל 2026</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/screens.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+<!-- ── Topbar ── -->
+<header id="topbar">
+    <span class="tb-logo">⚽</span>
+    <span id="tb-user"></span>
+    <button id="btn-topbar-login" class="btn-login-topbar" data-i18n="login">כניסה</button>
+    <button id="btn-logout" style="display:none" title="התנתק">🚪</button>
+    <button id="btn-theme" title="עיצוב">🌙</button>
+    <button id="tb-lang">EN</button>
+</header>
+
+<!-- ── Screens ── -->
+<div id="screen-groups" class="screen active"></div>
+<div id="screen-squad"  class="screen"></div>
+<div id="screen-myteam" class="screen"></div>
+<div id="screen-lb"     class="screen"></div>
+<div id="screen-bets"   class="screen"></div>
+<div id="screen-rules"  class="screen"></div>
+<div id="screen-admin"  class="screen"></div>
+<div id="screen-user"   class="screen"></div>
+
+<!-- ── Top Nav ── -->
+<nav id="bottom-nav">
+    <button data-screen="groups" onclick="Nav.setScreen('groups')">
+        <span class="nav-icon">🏟</span>
+        <span data-i18n="groups">בתים</span>
+    </button>
+    <button data-screen="myteam" onclick="Nav.setScreen('myteam')">
+        <span class="nav-icon">⭐</span>
+        <span data-i18n="myTeam">הקבוצה שלי</span>
+    </button>
+    <button data-screen="lb" onclick="Nav.setScreen('lb')">
+        <span class="nav-icon">🏆</span>
+        <span data-i18n="standings">דירוג</span>
+    </button>
+    <button data-screen="bets" onclick="Nav.setScreen('bets')">
+        <span class="nav-icon">🎲</span>
+        <span data-i18n="bets">הימורים</span>
+    </button>
+    <button data-screen="rules" onclick="Nav.setScreen('rules')">
+        <span class="nav-icon">📋</span>
+        <span data-i18n="rules">חוקים</span>
+    </button>
+    <button data-screen="user" onclick="Nav.setScreen('user')">
+        <span class="nav-icon">👤</span>
+        <span data-i18n="profile">פרופיל</span>
+    </button>
+    <button data-screen="admin" id="nav-admin" style="display:none" onclick="Nav.setScreen('admin')">
+        <span class="nav-icon">⚙️</span>
+        <span data-i18n="admin">ניהול</span>
+    </button>
+</nav>
+
+<!-- ── Picker Modal ── -->
+<div id="picker-modal"></div>
+<div id="score-modal"       class="modal-overlay"></div>
+<div id="bet-create-modal"  class="modal-overlay"></div>
+<div id="bet-resolve-modal" class="modal-overlay"></div>
+
+<!-- ── Player Action Modal ── -->
+<div id="player-action-modal" class="modal-overlay modal-bottom"></div>
+
+<!-- ── Login Modal ── -->
+<div id="login-modal" class="modal-overlay">
+    <div class="modal-box" style="max-width:360px">
+        <div class="modal-header">
+            <h3>🏆 פנטזי מונדיאל 2026</h3>
+            <button onclick="document.getElementById('login-modal').classList.remove('active')">✕</button>
+        </div>
+        <div class="lang-row" style="margin-bottom:16px">
+            <button class="lang-btn active" id="lang-btn-he" onclick="setLang('he');updateLangBtns('he')">עברית</button>
+            <button class="lang-btn" id="lang-btn-en" onclick="setLang('en');updateLangBtns('en')">English</button>
+        </div>
+        <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login" data-i18n="login">כניסה</button>
+            <button class="auth-tab" data-tab="register" data-i18n="register">הרשמה</button>
+        </div>
+        <div class="auth-card">
+            <div id="login-form">
+                <input class="auth-input" type="text" id="in-username" data-i18n-ph="username" placeholder="שם משתמש">
+                <input class="auth-input" type="password" id="in-password" data-i18n-ph="password" placeholder="סיסמה">
+                <button class="btn-primary auth-btn" id="btn-login" data-i18n="loginBtn">התחבר</button>
+            </div>
+            <div id="register-form" style="display:none">
+                <input class="auth-input" type="text" id="reg-username" data-i18n-ph="username" placeholder="שם משתמש">
+                <input class="auth-input" type="password" id="reg-password" data-i18n-ph="password" placeholder="סיסמה">
+                <input class="auth-input" type="password" id="reg-confirm" data-i18n-ph="passwordConfirm" placeholder="אימות סיסמה">
+                <button class="btn-primary auth-btn" id="btn-register" data-i18n="registerBtn">הרשם</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── Scripts ── -->
+<script src="js/config.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/team.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/picker.js"></script>
+<script src="js/screen.groups.js"></script>
+<script src="js/screen.squad.js"></script>
+<script src="js/screen.myteam.js"></script>
+<script src="js/screen.lb.js"></script>
+<script src="js/screen.bets.js"></script>
+<script src="js/screen.rules.js"></script>
+<script src="js/screen.admin.js"></script>
+<script src="js/screen.user.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
