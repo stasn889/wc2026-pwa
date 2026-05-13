@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>רשימות</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <h1>רשימות</h1>
+        <button id="btn-new-list" title="רשימה חדשה">+</button>
+      </div>
+      <ul id="list-nav"></ul>
+    </aside>
+
+    <main id="main">
+      <div id="empty-state">
+        <p>בחר רשימה מהתפריט<br />או צור רשימה חדשה</p>
+      </div>
+
+      <div id="task-view">
+        <div class="task-header">
+          <h2 id="list-title"></h2>
+        </div>
+
+        <div class="add-task">
+          <input
+            type="text"
+            id="task-input"
+            placeholder="הוסף משימה חדשה..."
+            autocomplete="off"
+          />
+          <button id="btn-add-task">הוסף</button>
+        </div>
+
+        <ul id="task-list"></ul>
+
+        <div id="tasks-done-bar"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="modal-overlay" class="hidden">
+    <div id="modal">
+      <h3 id="modal-title"></h3>
+      <input type="text" id="modal-input" />
+      <div class="modal-actions">
+        <button id="modal-confirm" class="btn-primary">אישור</button>
+        <button id="modal-cancel" class="btn-secondary">ביטול</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
