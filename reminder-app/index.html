@@ -7,48 +7,44 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="app">
-    <aside id="sidebar">
-      <div class="sidebar-header">
-        <h1>רשימות</h1>
-        <button id="btn-new-list" title="רשימה חדשה">+</button>
-      </div>
-      <ul id="list-nav"></ul>
-    </aside>
 
-    <main id="main">
-      <div id="empty-state">
-        <p>בחר רשימה מהתפריט<br />או צור רשימה חדשה</p>
-      </div>
-
-      <div id="task-view">
-        <div class="task-header">
-          <h2 id="list-title"></h2>
-        </div>
-
-        <div class="add-task">
-          <input
-            type="text"
-            id="task-input"
-            placeholder="הוסף משימה חדשה..."
-            autocomplete="off"
-          />
-          <button id="btn-add-task">הוסף</button>
-        </div>
-
-        <ul id="task-list"></ul>
-
-        <div id="tasks-done-bar"></div>
-      </div>
-    </main>
+  <!-- ── מסך: רשימות ── -->
+  <div id="screen-lists">
+    <header class="app-header">
+      <h1>הרשימות שלי</h1>
+      <button id="btn-new-list" title="רשימה חדשה">+</button>
+    </header>
+    <div id="lists-grid"></div>
   </div>
 
+  <!-- ── מסך: משימות ── -->
+  <div id="screen-tasks" hidden>
+    <header class="app-header tasks-header" id="tasks-header">
+      <button id="btn-back" class="btn-back">&#8592;</button>
+      <span id="tasks-list-icon" class="tasks-list-icon"></span>
+      <h2 id="tasks-list-name"></h2>
+    </header>
+    <div id="tasks-body">
+      <div class="add-task">
+        <input type="text" id="task-input" placeholder="הוסף משימה..." autocomplete="off" />
+        <button id="btn-add-task">הוסף</button>
+      </div>
+      <ul id="task-list"></ul>
+      <div id="tasks-done-bar"></div>
+    </div>
+  </div>
+
+  <!-- ── מודל: רשימה חדשה ── -->
   <div id="modal-overlay" class="hidden">
     <div id="modal">
-      <h3 id="modal-title"></h3>
-      <input type="text" id="modal-input" />
+      <h3>רשימה חדשה</h3>
+      <input type="text" id="modal-name-input" placeholder="שם הרשימה..." />
+      <div class="modal-section-label">צבע</div>
+      <div id="color-picker" class="color-picker"></div>
+      <div class="modal-section-label">סמל</div>
+      <div id="icon-picker" class="icon-picker"></div>
       <div class="modal-actions">
-        <button id="modal-confirm" class="btn-primary">אישור</button>
+        <button id="modal-confirm" class="btn-primary">צור רשימה</button>
         <button id="modal-cancel" class="btn-secondary">ביטול</button>
       </div>
     </div>
