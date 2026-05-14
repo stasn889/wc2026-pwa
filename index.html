@@ -35,6 +35,7 @@
 <div id="screen-admin"  class="screen"></div>
 <div id="screen-user"   class="screen"></div>
 <div id="screen-lineups" class="screen"></div>
+<div id="screen-chat"    class="screen"></div>
 
 <!-- ── Top Nav ── -->
 <nav id="bottom-nav">
@@ -57,6 +58,10 @@
     <button data-screen="lineups" onclick="Nav.setScreen('lineups')">
         <span class="nav-icon">👕</span>
         <span data-i18n="lineups">הרכבים</span>
+    </button>
+    <button data-screen="chat" onclick="Nav.setScreen('chat')">
+        <span class="nav-icon">💬</span>
+        <span data-i18n="chat">צאט</span>
     </button>
     <button data-screen="rules" onclick="Nav.setScreen('rules')">
         <span class="nav-icon">📋</span>
@@ -129,6 +134,7 @@
 <script src="js/screen.admin.js"></script>
 <script src="js/screen.user.js"></script>
 <script src="js/screen.lineups.js"></script>
+<script src="js/screen.chat.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

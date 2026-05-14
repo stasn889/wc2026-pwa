@@ -62,6 +62,8 @@ const TRANSLATIONS = {
         myProfile: 'הפרופיל שלי',
         closeModal: 'סגור',
         setValue: 'הגדר ערך נקודות:',
+        chat: 'צאט', chatPublic: 'ציבורי', chatPrivate: 'פרטי',
+        chatPlaceholder: 'כתוב הודעה...', chatSend: 'שלח', chatWith: 'שיחה עם',
     },
     en: {
         appName: 'Fantasy World Cup 2026',
@@ -126,6 +128,8 @@ const TRANSLATIONS = {
         myProfile: 'My Profile',
         closeModal: 'Close',
         setValue: 'Set points value:',
+        chat: 'Chat', chatPublic: 'Public', chatPrivate: 'Private',
+        chatPlaceholder: 'Type a message...', chatSend: 'Send', chatWith: 'Chat with',
     }
 };
 
