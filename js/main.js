@@ -8,6 +8,7 @@ function updateLangBtns(lang) {
 document.addEventListener('DOMContentLoaded', () => {
     // Restore theme preference
     Nav.restoreTheme();
+    TeamTheme.restore();
 
     // Restore session + update topbar
     Nav.updateTopbar();

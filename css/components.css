@@ -126,3 +126,55 @@ input[type=range] { width:100%; accent-color:var(--primary); cursor:pointer; }
     to   { opacity:1; transform:translateY(0); }
 }
 .screen.active { animation: fadeIn .22s ease; }
+
+/* ── Team Theme Picker ── */
+#team-theme-picker.active { display:flex; align-items:flex-end; justify-content:center; }
+.ttp-box {
+    background:var(--elevated); border:1px solid var(--border);
+    border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+    width:min(560px, 100vw); max-height:85vh;
+    display:flex; flex-direction:column;
+    box-shadow:0 -8px 32px rgba(0,0,0,.6);
+}
+.ttp-header {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 18px 12px; border-bottom:1px solid var(--border);
+    flex-shrink:0;
+}
+.ttp-header h3 { font-size:16px; font-weight:800; }
+.ttp-header button { background:none; border:none; font-size:20px; color:var(--muted); cursor:pointer; }
+.ttp-scroll { overflow-y:auto; padding:12px 14px 24px; display:flex; flex-direction:column; gap:4px; }
+.ttp-reset {
+    align-self:flex-start; background:var(--elevated2); border:1px solid var(--border);
+    border-radius:20px; padding:7px 16px; font-size:13px; font-weight:700;
+    color:var(--muted); cursor:pointer; margin-bottom:8px;
+    transition:background .15s, color .15s;
+}
+.ttp-reset.ttp-active,
+.ttp-reset:hover { background:var(--border); color:var(--text); }
+.ttp-region {
+    font-size:10px; font-weight:900; text-transform:uppercase; letter-spacing:1.2px;
+    color:var(--muted); padding:10px 2px 6px;
+}
+.ttp-grid { display:flex; flex-wrap:wrap; gap:7px; }
+.ttp-item {
+    display:flex; align-items:center; gap:6px;
+    background:var(--elevated2); border:2px solid var(--border);
+    border-radius:10px; padding:7px 11px; cursor:pointer;
+    transition:border-color .15s, background .15s, transform .1s;
+    font-size:13px;
+}
+.ttp-item:hover { border-color:var(--ttp-color,var(--primary)); transform:scale(1.04); }
+.ttp-item.ttp-active {
+    border-color:var(--ttp-color,var(--primary));
+    background:color-mix(in srgb, var(--ttp-color,var(--primary)) 15%, var(--elevated2));
+    box-shadow: 0 0 10px color-mix(in srgb, var(--ttp-color,var(--primary)) 40%, transparent);
+}
+.ttp-flag { font-size:18px; line-height:1; }
+.ttp-name { font-size:12px; font-weight:700; color:var(--text); }
+
+#btn-team-theme {
+    background:none; border:none; font-size:20px; cursor:pointer;
+    padding:4px 6px; border-radius:8px; transition:background .15s;
+}
+#btn-team-theme:hover { background:rgba(255,255,255,.1); }
