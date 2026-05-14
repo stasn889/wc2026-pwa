@@ -29,6 +29,7 @@ const Nav = (() => {
             else if (name === 'admin')   ScreenAdmin.render();
             else if (name === 'user')    ScreenUser.render();
             else if (name === 'lineups') ScreenLineups.render();
+            else if (name === 'chat')    ScreenChat.render();
         }
         window.scrollTo(0, 0);
     }
