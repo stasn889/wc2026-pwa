@@ -23,7 +23,7 @@
     --muted:      #5d7fa8;
     --shadow:     rgba(0,0,0,.75);
     --glow:       rgba(56,189,248,.2);
-    --topbar-h:   58px;
+    --topbar-h:   84px;
     --nav-h:      52px;
     --radius:     14px;
     --radius-sm:  8px;
@@ -64,16 +64,23 @@ input, select { font-family:inherit; }
 #topbar {
     position: fixed; top:0; left:0; right:0; z-index:300;
     height: var(--topbar-h);
-    background: linear-gradient(135deg, #04080f 0%, #081220 40%, #0a1a35 100%);
+    background: linear-gradient(160deg, #04080f 0%, #081220 50%, #0a1a35 100%);
     border-bottom: 1px solid rgba(56,189,248,.18);
     box-shadow: 0 2px 24px rgba(0,0,0,.6), 0 1px 0 rgba(56,189,248,.1);
-    display: flex; align-items: center;
-    padding: 0 14px; gap: 10px;
+    display: flex; flex-direction: column;
+    overflow: hidden;
 }
 html.theme-light #topbar {
-    background: linear-gradient(135deg, #0f2d6b 0%, #1a4fa0 60%, #1e5bb8 100%);
+    background: linear-gradient(160deg, #0f2d6b 0%, #1a4fa0 60%, #1e5bb8 100%);
     border-bottom: none;
     box-shadow: 0 2px 16px rgba(0,0,0,.25);
+}
+
+/* Row 1 — user identity */
+.tb-row1 {
+    display: flex; align-items: center;
+    padding: 0 14px; gap: 10px;
+    flex: 1;
 }
 .tb-logo {
     font-size:24px; flex-shrink:0;
@@ -85,25 +92,21 @@ html.theme-light #topbar {
     color:#fff; letter-spacing:.2px;
     text-shadow: 0 0 12px rgba(56,189,248,.4);
 }
-#tb-lang, #btn-theme {
-    background: rgba(56,189,248,.1);
-    border: 1px solid rgba(56,189,248,.25);
-    color: #fff; border-radius:var(--radius-sm); padding:5px 11px;
-    font-size:12px; font-weight:800; flex-shrink:0;
-    transition: background .2s, border-color .2s, box-shadow .2s;
-    letter-spacing:.3px;
+.tb-logout-btn {
+    display:flex; align-items:center; gap:5px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    color: rgba(255,255,255,.8);
+    border-radius: var(--radius-sm); padding: 5px 11px;
+    font-size: 12px; font-weight: 800; flex-shrink: 0;
+    transition: background .2s, border-color .2s, color .2s;
+    letter-spacing: .2px;
 }
-#tb-lang:hover, #btn-theme:hover {
-    background: rgba(56,189,248,.22);
-    border-color: rgba(56,189,248,.5);
-    box-shadow: 0 0 10px rgba(56,189,248,.2);
+.tb-logout-btn:hover {
+    background: rgba(239,68,68,.2);
+    border-color: rgba(239,68,68,.45);
+    color: #fca5a5;
 }
-#btn-logout {
-    background:none; border:none; font-size:18px;
-    color:rgba(255,255,255,.45); padding:4px; flex-shrink:0;
-    transition: color .2s, transform .15s;
-}
-#btn-logout:hover { color:var(--danger); transform:scale(1.15); }
 .btn-login-topbar {
     background: linear-gradient(135deg, var(--primary), var(--primary-d));
     color:#fff; border:none;
@@ -116,6 +119,34 @@ html.theme-light #topbar {
     opacity:.9; transform:scale(.97);
     box-shadow: 0 4px 18px var(--primary-glow);
 }
+
+/* Row 2 — design controls */
+.tb-row2 {
+    display: flex; align-items: center; justify-content: flex-end;
+    padding: 0 10px 7px; gap: 7px;
+    border-top: 1px solid rgba(255,255,255,.07);
+}
+#tb-lang, #btn-theme {
+    background: rgba(56,189,248,.1);
+    border: 1px solid rgba(56,189,248,.22);
+    color: #fff; border-radius: var(--radius-sm); padding: 4px 10px;
+    font-size:11px; font-weight:800; flex-shrink:0;
+    transition: background .2s, border-color .2s, box-shadow .2s;
+    letter-spacing:.3px;
+}
+#tb-lang:hover, #btn-theme:hover {
+    background: rgba(56,189,248,.22);
+    border-color: rgba(56,189,248,.5);
+    box-shadow: 0 0 10px rgba(56,189,248,.2);
+}
+#btn-team-theme {
+    background: rgba(56,189,248,.1);
+    border: 1px solid rgba(56,189,248,.22);
+    border-radius: var(--radius-sm); padding: 4px 8px;
+    font-size: 16px; cursor: pointer; flex-shrink: 0;
+    transition: background .15s, transform .15s;
+}
+#btn-team-theme:hover { background: rgba(56,189,248,.22); transform: scale(1.1); }
 
 /* ── Top Nav ── */
 #bottom-nav {
