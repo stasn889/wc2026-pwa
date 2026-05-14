@@ -24,7 +24,7 @@
     --shadow:     rgba(0,0,0,.75);
     --glow:       rgba(56,189,248,.2);
     --topbar-h:   84px;
-    --nav-h:      52px;
+    --nav-h:      64px;
     --radius:     14px;
     --radius-sm:  8px;
     --radius-lg:  20px;
@@ -155,40 +155,64 @@ html.theme-light #topbar {
     top: var(--topbar-h);
     left:0; right:0; z-index:200;
     height: var(--nav-h);
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 4px 16px rgba(0,0,0,.4);
+    background: rgba(9,13,23,.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(56,189,248,.1);
+    box-shadow: 0 4px 28px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.04);
     display: flex;
     overflow-x: auto;
     scrollbar-width: none;
 }
 #bottom-nav::-webkit-scrollbar { display:none; }
 #bottom-nav button {
-    flex:1; min-width:60px; background:none; border:none;
-    color: var(--muted); font-size:9.5px; font-weight:800;
+    flex:1; min-width:62px; background:none; border:none;
+    color: var(--muted); font-size:10px; font-weight:700;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:3px; padding:0 4px;
-    border-bottom: 3px solid transparent;
-    transition: color .2s, border-color .2s, background .15s;
-    white-space:nowrap; text-transform:uppercase; letter-spacing:.5px;
+    gap:4px; padding:6px 4px 5px;
     position: relative;
+    transition: color .2s;
+    white-space:nowrap; letter-spacing:.2px;
+}
+/* pill background for active */
+#bottom-nav button::before {
+    content:'';
+    position:absolute; top:7px; left:50%;
+    transform: translateX(-50%) scaleX(0);
+    width:50px; height:34px;
+    background: var(--primary-glow);
+    border-radius:12px;
+    transition: transform .28s cubic-bezier(.34,1.56,.64,1), background .2s;
+}
+#bottom-nav button.active::before {
+    transform: translateX(-50%) scaleX(1);
+    background: rgba(56,189,248,.14);
 }
 #bottom-nav button .nav-icon {
-    font-size:17px;
-    transition: transform .2s, filter .2s;
+    font-size:22px; line-height:1;
+    transition: transform .28s cubic-bezier(.34,1.56,.64,1), filter .2s;
+    position:relative; z-index:1;
+}
+#bottom-nav button span:last-child {
+    position:relative; z-index:1;
+    transition: color .2s, font-weight .2s;
 }
 #bottom-nav button.active {
     color: var(--primary);
-    border-bottom-color: var(--primary);
-    background: rgba(56,189,248,.06);
 }
 #bottom-nav button.active .nav-icon {
-    filter: drop-shadow(0 0 5px var(--primary));
-    transform: scale(1.1);
+    filter: drop-shadow(0 0 7px var(--primary));
+    transform: translateY(-3px) scale(1.18);
+}
+#bottom-nav button.active span:last-child {
+    font-weight:900;
 }
 #bottom-nav button:hover:not(.active) {
-    color:var(--text);
-    background:var(--elevated);
+    color: var(--text);
+}
+#bottom-nav button:hover:not(.active) .nav-icon {
+    transform: translateY(-2px) scale(1.1);
+    filter: drop-shadow(0 0 4px rgba(255,255,255,.25));
 }
 
 /* ── Screens ── */
