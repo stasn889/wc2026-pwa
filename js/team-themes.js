@@ -72,6 +72,11 @@ const TeamTheme = (() => {
 
     let current = null;
 
+    function hexRgb(hex) {
+        const h = hex.replace('#','');
+        return `${parseInt(h.slice(0,2),16)},${parseInt(h.slice(2,4),16)},${parseInt(h.slice(4,6),16)}`;
+    }
+
     function apply(teamName) {
         current = teamName || null;
         const el = document.getElementById('team-theme-style') || (() => {
@@ -89,12 +94,16 @@ const TeamTheme = (() => {
             return;
         }
 
-        const t = TEAMS[teamName];
+        const t  = TEAMS[teamName];
+        const p  = hexRgb(t.p);
+        const t2 = hexRgb(t.t2.startsWith('#') ? t.t2 : t.t1);
+
         el.textContent = `
+/* ── CSS variables ── */
 :root {
   --primary:       ${t.p};
   --primary-d:     ${t.pd};
-  --primary-glow:  ${t.g};
+  --primary-glow:  rgba(${p},.28);
   --bg:            ${t.bg};
   --bg2:           ${t.bg};
   --card:          ${t.card};
@@ -104,14 +113,100 @@ const TeamTheme = (() => {
   --border-bright: ${t.bdb};
 }
 html.theme-light {
-  --primary:      ${t.p};
-  --primary-d:    ${t.pd};
-  --primary-glow: ${t.g};
+  --primary:       ${t.p};
+  --primary-d:     ${t.pd};
+  --primary-glow:  rgba(${p},.18);
 }
+
+/* ── Body: kit pattern + radial corner glows ── */
+body {
+  background:
+    repeating-linear-gradient(
+      -58deg,
+      transparent 0px, transparent 28px,
+      rgba(${p},.035) 28px, rgba(${p},.035) 29px
+    ),
+    radial-gradient(ellipse 85% 65% at 5% 95%,  rgba(${p},.18) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 55% at 95% 5%,  rgba(${t2},.12) 0%, transparent 55%),
+    ${t.bg} !important;
+}
+
+/* ── Topbar: gradient + shimmer sweep ── */
 #topbar {
-  background: linear-gradient(135deg, ${t.t1}, ${t.t2}) !important;
-  box-shadow: 0 2px 12px ${t.g} !important;
+  background: linear-gradient(135deg, ${t.t1} 0%, ${t.t2} 100%) !important;
+  box-shadow: 0 3px 24px rgba(${p},.45), 0 1px 0 rgba(255,255,255,.08) !important;
+  overflow: hidden !important;
+}
+#topbar::after {
+  content: '';
+  position: absolute; top: -60%; left: -120%;
+  width: 60%; height: 220%;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,.2), transparent);
+  animation: tt-shine 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes tt-shine {
+  0%, 100% { left: -120%; opacity: 0; }
+  15%       { opacity: 1; }
+  35%       { left: 180%; opacity: 0; }
+}
+
+/* ── Nav bar: background tint + active glow ── */
+#bottom-nav {
+  background: rgba(${p},.06) !important;
+  border-bottom: 1px solid rgba(${p},.18) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,.5) !important;
+}
+#bottom-nav button.active {
+  background: rgba(${p},.14) !important;
+  border-bottom-color: ${t.p} !important;
+}
+#bottom-nav button.active .nav-icon {
+  filter: drop-shadow(0 0 7px rgba(${p},.9)) !important;
+}
+
+/* ── Cards: team-tinted border glow ── */
+.group-card, .squad-group, .lb-row, .bet-card {
+  box-shadow: 0 4px 16px rgba(0,0,0,.5), 0 0 0 1px rgba(${p},.14) !important;
+  transition: box-shadow .25s, transform .2s !important;
+}
+.group-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,.65), 0 0 24px rgba(${p},.22), 0 0 0 1px rgba(${p},.35) !important;
+}
+.pitch-wrap {
+  border-color: rgba(${p},.4) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,.5), 0 0 40px rgba(${p},.12) !important;
+}
+
+/* ── Screen headers: team gradient tint ── */
+.screen-header {
+  background: linear-gradient(135deg,
+    rgba(${p},.18) 0%, rgba(${p},.06) 100%) !important;
+  border-bottom-color: rgba(${p},.3) !important;
+}
+
+/* ── Input focus ── */
+input:focus, textarea:focus {
+  border-color: ${t.p} !important;
+  box-shadow: 0 0 0 3px rgba(${p},.2), 0 0 12px rgba(${p},.15) !important;
+  outline: none !important;
+}
+
+/* ── Send/confirm buttons glow ── */
+.chat-send, .bet-btn-confirm, .pick-apply {
+  box-shadow: 0 4px 18px rgba(${p},.4) !important;
+}
+
+/* ── Chat tabs active glow ── */
+.chat-tab.active {
+  text-shadow: 0 0 14px rgba(${p},.8);
+}
+
+/* ── Pitch: inner team glow ── */
+.pitch {
+  box-shadow: inset 0 0 80px rgba(${p},.07), inset 0 0 20px rgba(0,0,0,.4) !important;
 }`;
+
         localStorage.setItem(STORAGE_KEY, teamName);
         _updateTopbar();
         closePicker();
