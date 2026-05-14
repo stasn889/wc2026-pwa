@@ -213,15 +213,9 @@ input:focus, textarea:focus {
     }
 
     function _updateTopbar() {
-        const btn = document.getElementById('btn-team-theme');
-        if (!btn) return;
-        if (current && TEAMS[current]) {
-            btn.textContent = TEAM_FLAGS[current] || '🎨';
-            btn.title = current;
-        } else {
-            btn.textContent = '🎨';
-            btn.title = currentLang === 'he' ? 'ערכת נבחרת' : 'Team Theme';
-        }
+        const icon = document.getElementById('btn-team-icon');
+        if (!icon) return;
+        icon.textContent = (current && TEAMS[current]) ? (TEAM_FLAGS[current] || '🎨') : '🎨';
     }
 
     function restore() {

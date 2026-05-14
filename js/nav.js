@@ -55,7 +55,7 @@ const Nav = (() => {
         } else {
             document.documentElement.classList.remove('theme-light');
         }
-        const btn = document.getElementById('btn-theme');
+        const btn = document.getElementById('btn-theme-icon');
         if (btn) btn.textContent = theme === 'dark' ? '🌙' : '☀️';
     }
 
