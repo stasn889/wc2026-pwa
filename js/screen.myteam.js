@@ -48,7 +48,6 @@ const ScreenMyTeam = (() => {
             const isCap    = cap  === p.id;
             const isVice   = vice === p.id;
             const isBanker = Team.isBanker(p.id);
-            const initials = p.name.split(' ').filter(Boolean).map(w => w[0]).join('').slice(0,2).toUpperCase();
             slots += `
                 <div class="pitch-card" style="border-color:${color}"
                      onclick="ScreenMyTeam.tapPlayer(${p.id})">
@@ -57,7 +56,7 @@ const ScreenMyTeam = (() => {
                         ${isVice   ? '<span class="pcb pcb-c2">C2</span>' : ''}
                         ${isBanker ? '<span class="pcb pcb-b">B</span>'   : ''}
                     </div>
-                    <div class="pc-avatar" style="background:${color}">${initials}</div>
+                    ${playerAvatarHtml(p.name, 'pc-avatar')}
                     <div class="pc-name">${shortName(p.name)}</div>
                     <div class="pc-team">${TEAM_FLAGS[p.team]||''}</div>
                     <div class="pc-pts">${p.points||0} ${t('pts')}</div>
@@ -85,13 +84,11 @@ const ScreenMyTeam = (() => {
         const isVice   = Team.getViceCaptain()=== playerId;
         const isBanker = Team.isBanker(playerId);
         const color    = CONFIG.POSITION_COLORS[p.position];
-        const initials = p.name.split(' ').filter(Boolean).map(w => w[0]).join('').slice(0,2).toUpperCase();
-
         const modal = document.getElementById('player-action-modal');
         modal.innerHTML = `
             <div class="player-action-sheet">
                 <div class="pas-header">
-                    <div class="pc-avatar pas-avatar" style="background:${color}">${initials}</div>
+                    ${playerAvatarHtml(p.name, 'pc-avatar pas-avatar')}
                     <div>
                         <div style="font-weight:800;font-size:15px">${p.name}</div>
                         <div style="color:var(--muted);font-size:12px">${TEAM_FLAGS[p.team]||''} ${p.team} · ${p.price}M</div>

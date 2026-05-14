@@ -54,3 +54,17 @@ function getGroupMatches(teams, groupId) {
         home: teams[p[0]], away: teams[p[1]], date: dates[i]
     }));
 }
+
+function playerAvatarUrl(name) {
+    const initials = name.split(' ').filter(Boolean).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (Math.imul(31, h) + name.charCodeAt(i)) | 0;
+    const hue = Math.abs(h) % 360;
+    const bg = `hsl(${hue},55%,35%)`.replace(/\s/g, '');
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&size=80&bold=true&color=fff&background=${encodeURIComponent(bg)}&format=svg`;
+}
+
+function playerAvatarHtml(name, cssClass) {
+    const initials = name.split(' ').filter(Boolean).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+    return `<img class="${cssClass}" src="${playerAvatarUrl(name)}" alt="${initials}" loading="lazy" onerror="this.outerHTML='<span class=&quot;${cssClass} av-fallback&quot;>${initials}</span>'">`;
+}
