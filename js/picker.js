@@ -94,6 +94,7 @@ const Picker = (() => {
             return `<div class="picker-item${disabled ? ' picker-disabled' : ''}${inTeam ? ' picker-in-team' : ''}"
                 onclick="${disabled ? '' : 'Picker.select(' + p.id + ')'}">
                 <div class="pi-left">
+                    ${playerAvatarHtml(p.name, 'pi-avatar')}
                     <span class="pi-pos" style="background:${CONFIG.POSITION_COLORS[p.position]}">${p.position}</span>
                     <div>
                         <div class="pi-name">${p.name}</div>
