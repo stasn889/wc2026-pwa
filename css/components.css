@@ -172,9 +172,3 @@ input[type=range] { width:100%; accent-color:var(--primary); cursor:pointer; }
 }
 .ttp-flag { font-size:18px; line-height:1; }
 .ttp-name { font-size:12px; font-weight:700; color:var(--text); }
-
-#btn-team-theme {
-    background:none; border:none; font-size:20px; cursor:pointer;
-    padding:4px 6px; border-radius:8px; transition:background .15s;
-}
-#btn-team-theme:hover { background:rgba(255,255,255,.1); }

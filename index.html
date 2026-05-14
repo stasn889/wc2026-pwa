@@ -17,13 +17,19 @@
 
 <!-- ── Topbar ── -->
 <header id="topbar">
-    <span class="tb-logo">⚽</span>
-    <span id="tb-user"></span>
-    <button id="btn-topbar-login" class="btn-login-topbar" data-i18n="login">כניסה</button>
-    <button id="btn-logout" style="display:none" title="התנתק">🚪</button>
-    <button id="btn-theme" title="עיצוב">🌙</button>
-    <button id="btn-team-theme" title="ערכת נבחרת" onclick="TeamTheme.openPicker()">🎨</button>
-    <button id="tb-lang">EN</button>
+    <div class="tb-row1">
+        <span class="tb-logo">⚽</span>
+        <span id="tb-user"></span>
+        <button id="btn-logout" style="display:none" class="tb-logout-btn">
+            🚪 <span data-i18n="logout">התנתק</span>
+        </button>
+        <button id="btn-topbar-login" class="btn-login-topbar" data-i18n="login">כניסה</button>
+    </div>
+    <div class="tb-row2">
+        <button id="btn-theme" title="עיצוב">🌙</button>
+        <button id="btn-team-theme" title="ערכת נבחרת" onclick="TeamTheme.openPicker()">🎨</button>
+        <button id="tb-lang">EN</button>
+    </div>
 </header>
 
 <!-- ── Screens ── -->
