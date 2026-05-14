@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wc2026-v4.8';
+const CACHE_NAME = 'wc2026-v4.9';
 const urlsToCache = [
   '/',
   '/index.html',
