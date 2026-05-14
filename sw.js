@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wc2026-v4.1';
+const CACHE_NAME = 'wc2026-v4.3';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -21,6 +21,7 @@ const urlsToCache = [
   '/js/screen.rules.js',
   '/js/screen.admin.js',
   '/js/screen.user.js',
+  '/js/screen.lineups.js',
   '/js/main.js'
 ];
 

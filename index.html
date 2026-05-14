@@ -34,6 +34,7 @@
 <div id="screen-rules"  class="screen"></div>
 <div id="screen-admin"  class="screen"></div>
 <div id="screen-user"   class="screen"></div>
+<div id="screen-lineups" class="screen"></div>
 
 <!-- ── Top Nav ── -->
 <nav id="bottom-nav">
@@ -52,6 +53,10 @@
     <button data-screen="bets" onclick="Nav.setScreen('bets')">
         <span class="nav-icon">🎲</span>
         <span data-i18n="bets">הימורים</span>
+    </button>
+    <button data-screen="lineups" onclick="Nav.setScreen('lineups')">
+        <span class="nav-icon">👕</span>
+        <span data-i18n="lineups">הרכבים</span>
     </button>
     <button data-screen="rules" onclick="Nav.setScreen('rules')">
         <span class="nav-icon">📋</span>
@@ -123,6 +128,7 @@
 <script src="js/screen.rules.js"></script>
 <script src="js/screen.admin.js"></script>
 <script src="js/screen.user.js"></script>
+<script src="js/screen.lineups.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

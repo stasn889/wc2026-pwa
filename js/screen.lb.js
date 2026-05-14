@@ -5,9 +5,23 @@ const ScreenLB = (() => {
             .sort((a,b) => (b.points||0) - (a.points||0));
         const me = Auth.currentUser ? Auth.currentUser.username : '';
 
+        const podiumOrder = [users[1], users[0], users[2]]; // 2nd, 1st, 3rd
+        const podiumSlots = [2, 1, 3];
+        const podiumPodHTML = users.length >= 1 ? `
+            <div class="lb-podium">
+                ${podiumOrder.map((u, i) => u ? `
+                    <div class="lb-podium-slot lb-podium-${podiumSlots[i]}">
+                        <div class="lb-podium-avatar">${u.username.charAt(0).toUpperCase()}</div>
+                        <div class="lb-podium-name">${u.username}</div>
+                        <div class="lb-podium-pts">${u.points||0} ${t('pts')}</div>
+                        <div class="lb-podium-bar"></div>
+                    </div>` : '').join('')}
+            </div>` : '';
+
         const el = document.getElementById('screen-lb');
         el.innerHTML = `
             <div class="screen-header"><h2>${t('standings')}</h2></div>
+            ${podiumPodHTML}
             <div class="lb-table">
                 <div class="lb-head">
                     <span>${t('rank')}</span>
@@ -17,7 +31,9 @@ const ScreenLB = (() => {
                 </div>
                 ${users.map((u,i) => `
                     <div class="lb-row${u.username===me?' lb-me':''}" onclick="ScreenLB.openProfile('${u.username}')">
-                        <span class="lb-rank">${i+1}</span>
+                        <span class="lb-rank${i<3?' lb-rank-'+(i+1):''}">
+                            ${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}
+                        </span>
                         <span class="lb-name">${u.username}${u.username===me?' ★':''}</span>
                         <span>${(u.team||[]).length}/11</span>
                         <span class="lb-pts">${u.points||0}</span>
